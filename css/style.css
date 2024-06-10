@@ -1,10 +1,24 @@
 @import url("photographer.css");
 
-body {
-    font-family: "DM Sans", sans-serif;
-    margin: 0;
+:root {
+    --color-primary: #901C1C;
+    --colors-secondary: #D3573C;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+}
+
+/***************
+**** HEADER ****
+***************/
 
 header {
     display: flex;
@@ -12,17 +26,23 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 90px;
+    margin-top: 20px;
 }
 
 h1 {
-    color: #901C1C;
+    color: var(--color-primary);
     margin-right: 100px;
 }
 
 .logo {
     height: 50px;
-    margin-left: 100px;
+    width: 200px;
+    margin-left: 130px;
 }
+
+/****************************
+**** SECTION PHOTOGRAPHE ****
+****************************/
 
 .photographer_section {
     display: grid;
@@ -39,12 +59,45 @@ h1 {
     flex-direction: column;
 }
 
-.photographer_section article h2 {
-    color: #D3573C;
-    font-size: 36px;
+.link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.imgContainer {
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+    border-radius: 50%;
 }
 
 .photographer_section article img {
-    height: 200px;
-    width: 200px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transform: scale(1.5);
+    object-position: 50% 10px;
+}
+
+.photographer_section article h2 {
+    color: var(--colors-secondary);
+    font-size: 2.2em;
+    margin-top: 20px;
+}
+
+.location {
+    color: var(--color-primary);
+    font-size: 0.9em;
+}
+
+.description {
+    margin: 5px 0;
+    font-size: 0.7em;
+}
+
+.price {
+    color: #757575;
+    font-size: 0.6em;
 }
