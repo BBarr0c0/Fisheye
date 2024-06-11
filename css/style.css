@@ -77,8 +77,6 @@ h1 {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    transform: scale(1.5);
-    object-position: 50% 10px;
 }
 
 .photographer_section article h2 {
@@ -94,10 +92,10 @@ h1 {
 
 .description {
     margin: 5px 0;
-    font-size: 0.7em;
+    font-size: 0.8em;
 }
 
 .price {
     color: #757575;
-    font-size: 0.6em;
+    font-size: 0.7em;
 }

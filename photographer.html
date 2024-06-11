@@ -13,28 +13,36 @@
 
   <body>
 
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
+    <header role="banner" aria-label="En-tête de la page">
+      <a href="./index.html" title="Accueil">
+        <img src="assets/images/logo.png" class="logo" alt="Page d'accueil Fisheye"/>
+      </a>
     </header>
 
     <main id="main">
+
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" aria-label="Contactez le photographe">Contactez-moi</button>
       </div>
+
+      <div class="likes-price">
+
+      </div>
+      
     </main>
 
     <div id="contact_modal">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="Fermer la fenêtre de contact"/>
         </header>
 				<form>
 					<div>
 						<label>Prénom</label>
 						<input />
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
 				</form>
 			</div>
 		</div>
