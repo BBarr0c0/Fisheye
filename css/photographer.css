@@ -1,11 +1,34 @@
-#contact_modal {
-    display: none;
-}
+/*************************
+**** header photograph ****
+**************************/
 
 .photograph-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #FAFAFA;
-    height: 300px;
+    height: 313px;
     margin: 0 100px;
+    padding: 20px 50px;
+    border-radius: 5px;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 200px;
+    /* width: 358px; */
+}
+
+.textContainer h2 {
+    color: var(--color-secondary);
+    font-size: 3.5em;
+}
+
+.textContainer .location {
+    color: var(--color-primary);
+    font-size: 1.5em;
 }
 
 .contact_button {
@@ -16,9 +39,110 @@
     width: 170px;
     height: 70px;
     border: none;
-    background-color: #901C1C;
+    background-color: var(--color-primary);
     border-radius: 5px;
     cursor: pointer;
+}
+
+.selfie {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/******************************
+**** photograph production ****
+******************************/
+
+.select-medias {
+    margin: 20px 100px;
+}
+
+.select-container {
+    position: relative;
+    display: inline-block;
+}
+
+.select-medias label {
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-right: 20px;
+}
+
+.select-medias select {
+    font-weight: 700;
+    font-size: 1.2em;
+    background: var(--color-primary);
+    color: #fff;
+    cursor: pointer;
+    padding: 25px 60px 25px 15px;
+    border-radius: 5px;
+    appearance: none;
+}
+
+.chevron {
+    position: absolute;
+    right: 20px;
+    top: 48%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: white;
+    font-size: 1.3em;
+}
+
+.photograph-production {
+    margin: 20px 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px; 
+}
+
+.photograph-production article {
+    width: 350px;
+    height: 351px;
+}
+
+.photograph-production article img, .photograph-production article video {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.mediaTextContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-primary);
+    font-size: 1.1em;
+}
+
+.mediaTextContainer p {
+    white-space: nowrap;
+}
+
+
+
+
+.likes-price {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    background-color: #DB8876;
+    padding: 15px 25px;
+}
+
+.likes-price .price {
+    font-size: 1.5em;
+}
+
+
+/*************************
+**** formulaire modal ****
+**************************/
+
+#contact_modal {
+    display: none;
 }
 
 .modal {

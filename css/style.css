@@ -2,7 +2,7 @@
 
 :root {
     --color-primary: #901C1C;
-    --colors-secondary: #D3573C;
+    --color-secondary: #D3573C;
 }
 
 * {
@@ -10,6 +10,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    border: none;
 }
 
 body {
@@ -37,7 +38,7 @@ h1 {
 .logo {
     height: 50px;
     width: 200px;
-    margin-left: 130px;
+    margin-left: 110px;
 }
 
 /****************************
@@ -80,22 +81,22 @@ h1 {
 }
 
 .photographer_section article h2 {
-    color: var(--colors-secondary);
+    color: var(--color-secondary);
     font-size: 2.2em;
     margin-top: 20px;
 }
 
-.location {
+.photographer_section article .location {
     color: var(--color-primary);
     font-size: 0.9em;
 }
 
-.description {
+.photographer_section article .description {
     margin: 5px 0;
     font-size: 0.8em;
 }
 
-.price {
+.photographer_section article .price {
     color: #757575;
     font-size: 0.7em;
 }
