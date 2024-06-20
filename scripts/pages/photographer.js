@@ -1,3 +1,5 @@
+import { MediaFactory } from '../factory/medias.js';
+
 function getPhotographerId() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('id');
@@ -160,4 +162,15 @@ function updateTotalLikes() {
     });
 
     totalLikesElement.innerHTML = `${totalLikes} <i class="fa-solid fa-heart"></i>`;
+}
+
+// Utilisation de la MediaFactory
+function mediaFactory(media) {
+    const factoryInstance = new MediaFactory(media);
+    return {
+        title: factoryInstance.title,
+        mediaSrc: factoryInstance.path,
+        mediaType: factoryInstance.mediaType,
+        getMediaDOM: () => factoryInstance.create(),
+    };
 }
