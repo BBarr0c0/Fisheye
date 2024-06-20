@@ -23,7 +23,6 @@ async function getPhotographerById(id) {
 
 async function displayPhotographerData(photographer) {
     const photographHeader = document.querySelector(".photograph-header");
-    const likesPrice = document.querySelector(".likes-price");
     const main = document.querySelector("main");
 
     const textContainer = document.createElement('div');
@@ -54,6 +53,21 @@ async function displayPhotographerData(photographer) {
     textContainer.appendChild(tagline);
     photographHeader.appendChild(selfie);
 
+    const titleForm = document.getElementById('modal_title');
+
+    const titleNameForm = document.createElement('p');
+    titleNameForm.textContent = `${photographer.name}`;
+    titleNameForm.classList.add('titleNameForm');
+
+    titleForm.appendChild(titleNameForm);
+    
+    const likesPrice = document.querySelector(".likes-price");
+
+    const totalLikes = document.createElement('p');
+    totalLikes.classList.add('total-likes');
+
+    likesPrice.appendChild(totalLikes);
+
     const dailyPrice = document.createElement('p');
     dailyPrice.classList.add('price');
     dailyPrice.textContent = `${photographer.price}€/jour`;
@@ -70,6 +84,8 @@ async function displayPhotographerData(photographer) {
         const mediaCardDOM = mediaModel.getMediaDOM();
         photographProduction.appendChild(mediaCardDOM);
     });
+
+    updateTotalLikes();
 }
 
 async function init() {
@@ -81,7 +97,7 @@ async function init() {
 init();
 
 
-/* CHANGER SENS CHEVRON */
+/* CHANGE CHEVRON DIRECTION */
 
 document.addEventListener('DOMContentLoaded', function() {
     const selectContainer = document.querySelector('.select-container');
@@ -111,8 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-/* CACHER OPTION SELECTIONNEE */
-function cacherOptionSelectionnee() {
+/* HIDE SELECTED OPTION */
+function hideSelectedOption() {
     const select = document.querySelector("#select");
     const options = select.options;
     const selectedValue = select.value;
@@ -129,5 +145,19 @@ function cacherOptionSelectionnee() {
     }
 }
 document.addEventListener('DOMContentLoaded', function() {
-    cacherOptionSelectionnee();
+    hideSelectedOption();
 });
+
+
+function updateTotalLikes() {
+    const totalLikesElement = document.querySelector('.total-likes');
+    const allLikes = document.querySelectorAll('.media-likes');
+    let totalLikes = 0;
+
+    allLikes.forEach(like => {
+        const likesCount = parseInt(like.textContent);
+        totalLikes += likesCount;
+    });
+
+    totalLikesElement.innerHTML = `${totalLikes} <i class="fa-solid fa-heart"></i>`;
+}

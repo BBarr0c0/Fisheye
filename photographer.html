@@ -23,13 +23,13 @@
     <main id="main">
 
       <div class="photograph-header">
-        <button class="contact_button" aria-label="Contactez le photographe">Contactez-moi</button>
+        <button class="contact_button" aria-label="Contactez le photographe" onclick="displayModal()">Contactez-moi</button>
       </div>
 
       <div class="select-medias">
         <label for="select">Trier par</label>
         <div class="select-container">
-          <select name="select" id="select" onclick="cacherOptionSelectionnee()">
+          <select name="select" id="select" onclick="hideSelectedOption()">
             <option value="popularity">Popularité</option>
             <option value="date">Date</option>
             <option value="title">Titre</option>
@@ -48,18 +48,30 @@
       
     </main>
 
-    <div id="contact_modal">
-			<div class="modal">
+    <div id="contact_modal" role="dialog" aria-labelledby="modal_title" aria-describedby="modal_description">
+			<div class="modal" role="document" aria-modal="true">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt="Fermer la fenêtre de contact"/>
+          <h2 id="modal_title">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" alt="Fermer la fenêtre de contact" onclick="closeModal()"/>
         </header>
-				<form>
+				<form onsubmit="submitForm(event)">
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="firstName">Prénom</label>
+						<input id="firstName" name="firstName" type="text" required/>
 					</div>
-          <button class="contact_button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
+          <div>
+            <label for="lastName">Nom</label>
+            <input id="lastName" name="lastName" type="text" required/>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required/>
+          </div>
+          <div>
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+          <button type="submit" class="contact_button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
 				</form>
 			</div>
 		</div>

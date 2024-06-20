@@ -28,6 +28,7 @@ function mediaFactory(media) {
         mediaTitle.textContent = title;
 
         const mediaLikes = document.createElement('p');
+        mediaLikes.classList.add('media-likes');
         mediaLikes.innerHTML = `${likes} <i class="fa-solid fa-heart"></i>`;
 
         article.appendChild(mediaElement);
