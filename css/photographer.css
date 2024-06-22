@@ -57,20 +57,18 @@
 
 .select-medias {
     margin: 20px 100px;
-}
-
-.select-container {
     position: relative;
-    display: inline-block;
 }
 
-.select-medias label {
+.btn-container label {
     font-weight: 700;
-    font-size: 1.2em;
-    margin-right: 20px;
 }
 
-.select-medias select {
+#open-filter {
+    position: relative;
+}
+
+span, #select li {
     font-weight: 700;
     font-size: 1.2em;
     background: var(--color-primary);
@@ -78,21 +76,33 @@
     cursor: pointer;
     padding: 25px 60px 25px 15px;
     border-radius: 5px;
-    appearance: none;
+}
+
+#select li {
+    z-index: 3;
+}
+
+.select-container {
+    display: none;
+}
+
+.select-container.active {
+    display: block;
+    position: absolute;
+    top: 30px;
+    left: 100px;
 }
 
 .chevron {
     position: absolute;
-    right: 20px;
-    top: 48%;
-    transform: translateY(-50%);
-    pointer-events: none;
+    right: 15px;
+    top: 0;
     color: white;
     font-size: 1.3em;
 }
 
 .photograph-production {
-    margin: 20px 100px;
+    margin: 80px 100px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 30px; 

@@ -99,56 +99,7 @@ async function init() {
 init();
 
 
-/* CHANGE CHEVRON DIRECTION */
 
-document.addEventListener('DOMContentLoaded', function() {
-    const selectContainer = document.querySelector('.select-container');
-    const chevron = document.querySelector('.chevron');
-    const select = document.querySelector("#select");
-    
-
-    document.addEventListener('click', function(event) {
-      if (select.contains(event.target)) {
-        // Toggle open class when clicking on the select element
-        selectContainer.classList.toggle('open');
-      } else {
-        // Remove open class when clicking outside the select element
-        selectContainer.classList.remove('open');
-      }
-
-      // Update chevron icon based on the open state
-      if (selectContainer.classList.contains('open')) {
-        chevron.classList.remove('fa-chevron-down');
-        chevron.classList.add('fa-chevron-up');
-      } else {
-        chevron.classList.remove('fa-chevron-up');
-        chevron.classList.add('fa-chevron-down');
-      }
-    });
-
-});
-
-
-/* HIDE SELECTED OPTION */
-function hideSelectedOption() {
-    const select = document.querySelector("#select");
-    const options = select.options;
-    const selectedValue = select.value;
-    
-    
-    for (let i = 0; i < options.length; i++) {
-        let option = options[i];
-        // Masquer l'option sélectionnée
-        if (option.value === selectedValue) {
-        option.style.display = "none";
-        } else {
-        option.style.display = ""; // Afficher les autres options
-        }
-    }
-}
-document.addEventListener('DOMContentLoaded', function() {
-    hideSelectedOption();
-});
 
 
 function updateTotalLikes() {

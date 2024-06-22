@@ -22,29 +22,31 @@
 
     <main id="main">
 
-      <div class="photograph-header">
+      <section class="photograph-header">
         <button class="contact_button" aria-label="Contactez le photographe">Contactez-moi</button>
-      </div>
+      </section>
 
-      <div class="select-medias">
-        <label for="select">Trier par</label>
-        <div class="select-container">
-          <select name="select" id="select" onclick="hideSelectedOption()">
-            <option value="popularity">Popularité</option>
-            <option value="date">Date</option>
-            <option value="title">Titre</option>
-          </select>
-          <i class="fas fa-chevron-down chevron"></i>
+      <section class="select-medias" aria-labelledby="filterLabel">
+
+        <div class="btn-container">
+          <label for="select">Trier par</label>
+          <button id="open-filter" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <span>Popularité</span>
+              <i class="chevron fas fa-chevron-down"></i>
+          </button>
         </div>
-      </div>
+        <div class="select-container" role="listbox" aria-labelledby="filterLabel">
+            <ul id="select" tabindex="0"></ul>
+        </div>
+      </section>
 
-      <div class="photograph-production">
+      <section class="photograph-production">
 
-      </div>
+      </section>
 
-      <div class="likes-price">
+      <section class="likes-price">
 
-      </div>
+      </section>
       
     </main>
 
@@ -79,5 +81,6 @@
     <script type="module" src="/scripts/pages/photographer.js"></script>
     <script type="module" src="/scripts/factory/medias.js"></script>
     <script type="module" src="/scripts/utils/contactForm.js"></script>
+    <script type="module" src="/scripts/utils/filter.js"></script>
   </body>
 </html>
