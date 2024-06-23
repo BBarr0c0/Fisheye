@@ -1,3 +1,5 @@
+import { updateTotalLikes } from '../pages/photographer.js'
+
 export class MediaFactory {
     constructor(media) {
         const { photographerId, title, image, video, likes } = media;
@@ -18,14 +20,29 @@ class ImageMedia {
         this.path = path;
         this.title = title;
         this.likes = likes;
+        this.liked = false;
+    }
+
+    toggleLike() {
+        this.liked = !this.liked;
+        this.likes += this.liked ? 1 : -1;
+        this.updateLikesDisplay();
+    }
+
+    updateLikesDisplay() {
+        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-solid fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        updateTotalLikes();
     }
 
     create() {
         const article = document.createElement('article');
+
         const imgElement = document.createElement('img');
         imgElement.setAttribute('src', this.path);
         imgElement.setAttribute('alt', this.title);
         imgElement.setAttribute('class', 'image-media');
+        imgElement.setAttribute('tabindex', '0');
+        imgElement.setAttribute('role', 'img');
 
         const mediaTextContainer = document.createElement('div');
         mediaTextContainer.classList.add('mediaTextContainer');
@@ -33,14 +50,20 @@ class ImageMedia {
         const mediaTitle = document.createElement('h3');
         mediaTitle.textContent = this.title;
 
-        const mediaLikes = document.createElement('p');
-        mediaLikes.classList.add('media-likes');
-        mediaLikes.innerHTML = `${this.likes} <i class="fa-solid fa-heart"></i>`;
+        this.mediaLikes = document.createElement('p');
+        this.mediaLikes.classList.add('media-likes');
+        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-solid fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        this.mediaLikes.addEventListener('click', () => this.toggleLike());
+        this.mediaLikes.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.toggleLike();
+            }
+        });
 
         article.appendChild(imgElement);
         article.appendChild(mediaTextContainer);
         mediaTextContainer.appendChild(mediaTitle);
-        mediaTextContainer.appendChild(mediaLikes);
+        mediaTextContainer.appendChild(this.mediaLikes);
 
         return article;
     }
@@ -51,13 +74,27 @@ class VideoMedia {
         this.path = path;
         this.title = title;
         this.likes = likes;
+        this.liked = false;
+    }
+
+    toggleLike() {
+        this.liked = !this.liked;
+        this.likes += this.liked ? 1 : -1;
+        this.updateLikesDisplay();
+    }
+
+    updateLikesDisplay() {
+        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-solid fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        updateTotalLikes();
     }
 
     create() {
         const article = document.createElement('article');
+
         const videoElement = document.createElement('video');
         videoElement.setAttribute('controls', '');
         videoElement.setAttribute('class', 'video-media');
+        videoElement.setAttribute('tabindex', '0');
 
         const sourceElement = document.createElement('source');
         sourceElement.setAttribute('src', this.path);
@@ -71,14 +108,20 @@ class VideoMedia {
         const mediaTitle = document.createElement('h3');
         mediaTitle.textContent = this.title;
 
-        const mediaLikes = document.createElement('p');
-        mediaLikes.classList.add('media-likes');
-        mediaLikes.innerHTML = `${this.likes} <i class="fa-solid fa-heart"></i>`;
+        this.mediaLikes = document.createElement('p');
+        this.mediaLikes.classList.add('media-likes');
+        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-solid fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        this.mediaLikes.addEventListener('click', () => this.toggleLike());
+        this.mediaLikes.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.toggleLike();
+            }
+        });
 
         article.appendChild(videoElement);
         article.appendChild(mediaTextContainer);
         mediaTextContainer.appendChild(mediaTitle);
-        mediaTextContainer.appendChild(mediaLikes);
+        mediaTextContainer.appendChild(this.mediaLikes);
 
         return article;
     }

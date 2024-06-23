@@ -102,7 +102,7 @@ init();
 
 
 
-function updateTotalLikes() {
+export function updateTotalLikes() {
     const totalLikesElement = document.querySelector('.total-likes');
     const allLikes = document.querySelectorAll('.media-likes');
     let totalLikes = 0;
