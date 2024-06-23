@@ -50,7 +50,9 @@
       
     </main>
 
-    <div id="contact_modal" role="dialog" aria-labelledby="modal_title" aria-describedby="modal_description">
+    <!-- Form Modal -->
+
+    <div id="contact_modal" role="dialog" aria-labelledby="modal_title" aria-describedby="modal_description" aria-hidden="true" tabindex="-1">
 			<div class="modal" role="document" aria-modal="true">
 				<header>
           <h2 id="modal_title">Contactez-moi</h2>
@@ -59,24 +61,34 @@
 				<form class="form-contact">
 					<div>
 						<label for="firstName">Prénom</label>
-						<input id="firstName" name="firstName" type="text" required/>
+						<input id="firstName" name="firstName" type="text" required tabindex="0"/>
 					</div>
           <div>
             <label for="lastName">Nom</label>
-            <input id="lastName" name="lastName" type="text" required/>
+            <input id="lastName" name="lastName" type="text" required tabindex="0"/>
           </div>
           <div>
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" required/>
+            <input id="email" name="email" type="email" required tabindex="0"/>
           </div>
           <div>
             <label for="message">Votre message</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
+            <textarea id="message" name="message" rows="6" required tabindex="0"></textarea>
           </div>
-          <button type="submit" class="contact_button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
+          <button type="submit" class="contact_button" aria-label="Envoyer le formulaire de contact" tabindex="0">Envoyer</button>
 				</form>
+        <div id="confirmation_message" class="sr-only" aria-live="polite">Votre formulaire a bien été envoyé.</div>
 			</div>
 		</div>
+
+    <!-- Success Modal -->
+
+    <div id="success_modal" class="hidden" role="dialog" aria-labelledby="success_modal_title" aria-hidden="true" tabindex="-1">
+      <div class="modal" role="document" aria-modal="true">
+          <p id="success_message" tabindex="0">Votre formulaire a bien été envoyé.</p>
+          <button class="close-success" aria-label="Fermer la fenêtre de succès" tabindex="0">Fermer</button>
+      </div>
+    </div>
 
     <script type="module" src="/scripts/pages/photographer.js"></script>
     <script type="module" src="/scripts/factory/medias.js"></script>

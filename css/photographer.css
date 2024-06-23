@@ -229,3 +229,42 @@ form textarea {
     font-size: 1em;
     width: 100%;
 }
+
+#success_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+#success_modal .modal {
+    top: 30%;
+    gap: 50px;
+    padding: 100px 0;
+}
+
+#success_modal p {
+    font-size: 20px;
+    margin-bottom: 100px;
+}
+
+#success_modal button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: var(--color-primary);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: -60px;
+}
+
+.hidden {
+    display: none;
+}
