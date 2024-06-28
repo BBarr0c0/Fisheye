@@ -65,7 +65,7 @@ class ImageMedia {
         mediaTextContainer.appendChild(mediaTitle);
         mediaTextContainer.appendChild(this.mediaLikes);
 
-        return article;
+        return { article, mediaElement: imgElement };
     }
 }
 
@@ -123,6 +123,6 @@ class VideoMedia {
         mediaTextContainer.appendChild(mediaTitle);
         mediaTextContainer.appendChild(this.mediaLikes);
 
-        return article;
+        return { article, mediaElement: videoElement };
     }
 }

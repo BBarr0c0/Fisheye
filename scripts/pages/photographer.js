@@ -1,4 +1,5 @@
 import { MediaFactory } from '../factory/medias.js';
+import { initLightbox } from '../utils/lightbox.js';
 
 function getPhotographerId() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -81,10 +82,13 @@ async function displayPhotographerData(photographer) {
     const photographProduction = document.querySelector('.photograph-production');
     main.appendChild(photographProduction);
 
+    const lightbox = initLightbox();
+
     photographer.media.forEach(media => {
         const mediaModel = mediaFactory(media);
-        const mediaCardDOM = mediaModel.getMediaDOM();
-        photographProduction.appendChild(mediaCardDOM);
+        const { article, mediaElement } = mediaModel.getMediaDOM();
+        lightbox.addMediaItem(mediaElement);
+        photographProduction.appendChild(article);
     });
 
     updateTotalLikes();
@@ -97,9 +101,6 @@ async function init() {
 }
 
 init();
-
-
-
 
 
 export function updateTotalLikes() {

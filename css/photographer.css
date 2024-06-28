@@ -265,6 +265,74 @@ form textarea {
     margin-bottom: -60px;
 }
 
-.hidden {
+.success_hidden {
     display: none;
+}
+
+/* lightbox.css */
+
+.hidden {
+	display: none;
+}
+
+.carousel {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.9);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+.carousel.hidden {
+	display: none;
+}
+
+.carousel-content {
+	position: relative;
+	max-width: 90%;
+	max-height: 90%;
+	display: flex;
+	align-items: center;
+}
+
+.carousel-container img,
+.carousel-container video {
+	max-width: 90vw;
+	max-height: 90vh;
+	display: block;
+	margin: auto;
+}
+
+.carousel-close,
+.carousel-prev,
+.carousel-next {
+	position: absolute;
+	background: none;
+	border: none;
+	color: #901c1c;
+	cursor: pointer;
+	font-size: 48px;
+	font-weight: bolder;
+}
+
+.carousel-close {
+	top: 2rem;
+	right: 2rem;
+}
+
+.carousel-prev {
+	left: 2rem;
+}
+
+.carousel-next {
+	right: 2rem;
+}
+
+.carousel .media-likes {
+	display: none;
 }

@@ -29,7 +29,7 @@
       <section class="select-medias" aria-labelledby="filterLabel">
 
         <div class="btn-container">
-          <label for="select">Trier par</label>
+          <label>Trier par</label>
           <button id="open-filter" type="button" aria-haspopup="listbox" aria-expanded="false">
               <span>Popularité</span>
               <i class="chevron fas fa-chevron-down"></i>
@@ -83,16 +83,30 @@
 
     <!-- Success Modal -->
 
-    <div id="success_modal" class="hidden" role="dialog" aria-labelledby="success_modal_title" aria-hidden="true" tabindex="-1">
+    <div id="success_modal" class="success_hidden" role="dialog" aria-labelledby="success_modal_title" aria-hidden="true" tabindex="-1">
       <div class="modal" role="document" aria-modal="true">
           <p id="success_message" tabindex="0">Votre formulaire a bien été envoyé.</p>
           <button class="close-success" aria-label="Fermer la fenêtre de succès" tabindex="0">Fermer</button>
       </div>
     </div>
 
+    <!-- Carousel Modal -->
+    <div id="carousel_modal" class="hidden carousel_modal" role="dialog" aria-labelledby="carousel_modal_title"
+    aria-hidden="true" tabindex="-1">
+    <div class="carousel" role="document" aria-modal="true">
+      <button class="carousel-close" aria-label="Fermer la fenêtre du carrousel">&times;</button>
+      <button class="carousel-prev" aria-label="Image précédente">&lt;</button>
+      <div class="carousel-container">
+        <!-- Images and videos will be injected here by JavaScript -->
+      </div>
+      <button class="carousel-next" aria-label="Image suivante">&gt;</button>
+    </div>
+  </div>
+
     <script type="module" src="/scripts/pages/photographer.js"></script>
     <script type="module" src="/scripts/factory/medias.js"></script>
     <script type="module" src="/scripts/utils/contactForm.js"></script>
     <script type="module" src="/scripts/utils/filter.js"></script>
+    <script type="module" src="/scripts/utils/lightbox.js"></script>
   </body>
 </html>

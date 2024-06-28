@@ -38,7 +38,7 @@ function handleKeydown(event) {
     if (event.key === 'Tab') {
         trapTabKey(event);
     } else if (event.key === 'Escape') {
-        if (!successModal.classList.contains('hidden')) {
+        if (!successModal.classList.contains('success_hidden')) {
             closeSuccessModal();
         } else {
             closeModal();
@@ -74,7 +74,7 @@ function submitForm(event) {
 }
 
 function displaySuccessModal() {
-    successModal.classList.remove('hidden');
+    successModal.classList.remove('success_hidden');
     successModal.setAttribute('aria-hidden', 'false');
     successModal.setAttribute('tabindex', '-1');
     successModal.focus();
@@ -86,7 +86,7 @@ successCloseButtons.forEach(button => {
 });
 
 function closeSuccessModal() {
-    successModal.classList.add('hidden');
+    successModal.classList.add('success_hidden');
     successModal.setAttribute('aria-hidden', 'true');
     document.removeEventListener('keydown', handleKeydown);
     contactButton.focus();
