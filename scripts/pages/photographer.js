@@ -1,5 +1,6 @@
 import { MediaFactory } from '../factory/medias.js';
 import { initLightbox } from '../utils/lightbox.js';
+import { sortMedia } from '../utils/filter.js';
 
 function getPhotographerId() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -87,21 +88,28 @@ async function displayPhotographerData(photographer) {
     photographer.media.forEach(media => {
         const mediaModel = mediaFactory(media);
         const { article, mediaElement } = mediaModel.getMediaDOM();
-        lightbox.addMediaItem(mediaElement);
+        lightbox.addMediaItem(mediaElement, media.title);
         photographProduction.appendChild(article);
     });
 
     updateTotalLikes();
+
+    // Apply default sorting
+    const defaultOption = 'Popularité';
+    sortMedia(defaultOption);
 }
 
 async function init() {
     const photographerId = getPhotographerId();
     const photographer = await getPhotographerById(photographerId);
-    displayPhotographerData(photographer);
+    if (photographer) {
+        displayPhotographerData(photographer);
+    } else {
+        console.error('Photographer data could not be loaded.');
+    }
 }
 
 init();
-
 
 export function updateTotalLikes() {
     const totalLikesElement = document.querySelector('.total-likes');
@@ -116,13 +124,17 @@ export function updateTotalLikes() {
     totalLikesElement.innerHTML = `${totalLikes} <i class="fa-solid fa-heart"></i>`;
 }
 
-// Utilisation de la MediaFactory
+// Using the MediaFactory
 function mediaFactory(media) {
     const factoryInstance = new MediaFactory(media);
     return {
         title: factoryInstance.title,
         mediaSrc: factoryInstance.path,
         mediaType: factoryInstance.mediaType,
-        getMediaDOM: () => factoryInstance.create(),
+        getMediaDOM: () => {
+            const { article, mediaElement } = factoryInstance.create();
+            article.setAttribute('data-date', media.date); // Ajout de l'attribut data-date
+            return { article, mediaElement };
+        }
     };
 }

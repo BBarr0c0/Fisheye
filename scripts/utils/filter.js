@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttonText = openFilterButton.querySelector('span');
     const buttonIcon = openFilterButton.querySelector('.chevron');
 
-    // Fonction pour mettre à jour la liste des options
+    // Function to update the list of options
     const updateOptions = (selectedOption) => {
         selectList.innerHTML = '';
         options.forEach(option => {
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     buttonIcon.classList.remove('fa-chevron-up');
                     buttonIcon.classList.add('fa-chevron-down');
                     openFilterButton.setAttribute('aria-expanded', 'false');
+                    sortMedia(option);
                 };
 
                 listItem.addEventListener('click', selectOption);
@@ -56,5 +57,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    updateOptions(options[0]);
+    // Initialization with default option
+    const defaultOption = options[0];
+    buttonText.textContent = defaultOption;
+    updateOptions(defaultOption);
+    sortMedia(defaultOption);
 });
+
+export function sortMedia(option) {
+    const mediaContainer = document.querySelector('.photograph-production');
+    let mediaElements = Array.from(mediaContainer.children);
+    
+    switch(option) {
+        case 'Popularité':
+            mediaElements.sort((a, b) => {
+                const likesA = parseInt(a.querySelector('.media-likes').textContent);
+                const likesB = parseInt(b.querySelector('.media-likes').textContent);
+                return likesB - likesA;
+            });
+            break;
+        case 'Date':
+            mediaElements.sort((a, b) => {
+                const dateA = new Date(a.getAttribute('data-date'));
+                const dateB = new Date(b.getAttribute('data-date'));
+                return dateB - dateA;
+            });
+            break;
+        case 'Titre':
+            mediaElements.sort((a, b) => {
+                const titleA = a.querySelector('h3').textContent.toLowerCase();
+                const titleB = b.querySelector('h3').textContent.toLowerCase();
+                return titleA.localeCompare(titleB);
+            });
+            break;
+    }
+
+    mediaContainer.innerHTML = '';
+    mediaElements.forEach(el => mediaContainer.appendChild(el));
+}

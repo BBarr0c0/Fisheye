@@ -52,54 +52,121 @@
 }
 
 /******************************
-**** photograph production ****
+********** Filter *************
 ******************************/
 
 .select-medias {
-    margin: 20px 100px;
     position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 100px;
 }
 
-.btn-container label {
-    font-weight: 700;
+.btn-container {
+    display: flex;
+    align-items: center;
 }
 
 #open-filter {
-    position: relative;
-}
-
-span, #select li {
-    font-weight: 700;
-    font-size: 1.2em;
-    background: var(--color-primary);
-    color: #fff;
+    background-color: #901c1c;
+    color: white;
+    border: none;
+    padding: 12px;
     cursor: pointer;
-    padding: 25px 60px 25px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 170px;
+    height: 70px;
+    font-size: 18px;
+    font-weight: 700;
     border-radius: 5px;
 }
 
-#select li {
-    z-index: 3;
+#open-filter i {
+    margin-left: 10px;
 }
 
 .select-container {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #901c1c;
+    color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 0 0 5px 5px;
 }
 
 .select-container.active {
-    display: block;
+    display: flex;
     position: absolute;
-    top: 30px;
-    left: 100px;
+    left: 99px;
+}
+
+.select-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 170px;
+}
+
+.select-container li {
+    cursor: pointer;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+}
+
+hr {
+    margin: 0 10px;
+}
+
+.select-container li:hover,
+#open-filter:hover {
+    background-color: #b22222;
+}
+
+.select-container li:last-child:hover {
+    border-radius: 0 0 5px 5px;
+}
+
+.btn-container label {
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 30px;
+}
+
+.contact-button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .chevron {
     position: absolute;
-    right: 15px;
-    top: 0;
+    right: 20px;
+    top: 20px;
     color: white;
     font-size: 1.3em;
 }
+
+/******************************
+**** photograph production ****
+******************************/
 
 .photograph-production {
     margin: 80px 100px;
@@ -131,8 +198,9 @@ span, #select li {
     white-space: nowrap;
 }
 
-
-
+/******************************
+**** total likes and price ****
+******************************/
 
 .likes-price {
     display: flex;
@@ -269,7 +337,9 @@ form textarea {
     display: none;
 }
 
-/* lightbox.css */
+/******************************
+*********** lightbox *********
+******************************/
 
 .hidden {
 	display: none;
@@ -286,6 +356,12 @@ form textarea {
 	justify-content: center;
 	align-items: center;
 	z-index: 1000;
+}
+
+.carousel h3 {
+    margin-top: 10px;
+    color: var(--color-primary);
+    font-size: 1.1em;
 }
 
 .carousel.hidden {

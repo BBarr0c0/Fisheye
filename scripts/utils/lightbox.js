@@ -1,4 +1,4 @@
-// lightbox.js
+
 export function initLightbox() {
 	const carouselModal = document.getElementById('carousel_modal');
 	const carouselContainer = document.querySelector(
@@ -10,13 +10,20 @@ export function initLightbox() {
 
 	let currentIndex = 0;
 	let mediaItems = [];
+	let mediaTitles = [];
 
 	function openCarousel(index) {
 		currentIndex = index;
 		const mediaItem = mediaItems[index];
+		const mediaTitle = mediaTitles[index];
 		carouselContainer.innerHTML = ''; // Clear previous content
+
 		const mediaElement = mediaItem.cloneNode(true);
+		const titleElement = document.createElement('h3');
+		titleElement.textContent = mediaTitle;
+
 		carouselContainer.appendChild(mediaElement);
+		carouselContainer.appendChild(titleElement);
 		carouselModal.classList.remove('hidden');
 	}
 
@@ -46,12 +53,14 @@ export function initLightbox() {
 	});
 
 	return {
-		addMediaItem: (mediaItem) => {
+		addMediaItem: (mediaItem, mediaTitle) => {
 			const index = mediaItems.length;
 			mediaItems.push(mediaItem);
-			mediaItem.addEventListener('click', () =>
-				openCarousel(index),
-			);
+			mediaTitles.push(mediaTitle);
+			mediaItem.addEventListener('click', () => openCarousel(index));
+            mediaItem.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') openCarousel(index);
+            });
 		},
 	};
 }

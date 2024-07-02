@@ -2,25 +2,26 @@ import { updateTotalLikes } from '../pages/photographer.js'
 
 export class MediaFactory {
     constructor(media) {
-        const { photographerId, title, image, video, likes } = media;
+        const { photographerId, title, image, video, likes, date } = media;
         const mediaSrc = image ? `assets/images/${photographerId}/${image}` : `assets/images/${photographerId}/${video}`;
         const mediaType = image ? 'image' : 'video';
         
         switch (mediaType) {
             case 'image':
-                return new ImageMedia(mediaSrc, title, likes);
+                return new ImageMedia(mediaSrc, title, likes, date);
             case 'video':
-                return new VideoMedia(mediaSrc, title, likes);
+                return new VideoMedia(mediaSrc, title, likes, date);
         }
     }
 }
 
 class ImageMedia {
-    constructor(path, title, likes) {
+    constructor(path, title, likes, date) {
         this.path = path;
         this.title = title;
         this.likes = likes;
         this.liked = false;
+        this.date = date;
     }
 
     toggleLike() {
@@ -30,12 +31,14 @@ class ImageMedia {
     }
 
     updateLikesDisplay() {
-        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-solid fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        const iconClass = this.liked ? 'fa-solid' : 'fa-regular';
+        this.mediaLikes.innerHTML = `${this.likes} <i class="${iconClass} fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
         updateTotalLikes();
     }
 
     create() {
         const article = document.createElement('article');
+        
 
         const imgElement = document.createElement('img');
         imgElement.setAttribute('src', this.path);
@@ -52,7 +55,7 @@ class ImageMedia {
 
         this.mediaLikes = document.createElement('p');
         this.mediaLikes.classList.add('media-likes');
-        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-solid fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-regular fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
         this.mediaLikes.addEventListener('click', () => this.toggleLike());
         this.mediaLikes.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
@@ -70,11 +73,12 @@ class ImageMedia {
 }
 
 class VideoMedia {
-    constructor(path, title, likes) {
+    constructor(path, title, likes, date) {
         this.path = path;
         this.title = title;
         this.likes = likes;
         this.liked = false;
+        this.date = date;
     }
 
     toggleLike() {
@@ -84,12 +88,14 @@ class VideoMedia {
     }
 
     updateLikesDisplay() {
-        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-solid fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        const iconClass = this.liked ? 'fa-solid' : 'fa-regular';
+        this.mediaLikes.innerHTML = `${this.likes} <i class="${iconClass} fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
         updateTotalLikes();
     }
 
     create() {
         const article = document.createElement('article');
+        
 
         const videoElement = document.createElement('video');
         videoElement.setAttribute('controls', '');
@@ -110,7 +116,7 @@ class VideoMedia {
 
         this.mediaLikes = document.createElement('p');
         this.mediaLikes.classList.add('media-likes');
-        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-solid fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-regular fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
         this.mediaLikes.addEventListener('click', () => this.toggleLike());
         this.mediaLikes.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
