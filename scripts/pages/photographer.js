@@ -133,7 +133,7 @@ function mediaFactory(media) {
         mediaType: factoryInstance.mediaType,
         getMediaDOM: () => {
             const { article, mediaElement } = factoryInstance.create();
-            article.setAttribute('data-date', media.date); // Ajout de l'attribut data-date
+            article.setAttribute('data-date', media.date);
             return { article, mediaElement };
         }
     };

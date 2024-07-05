@@ -1,9 +1,7 @@
 
 export function initLightbox() {
 	const carouselModal = document.getElementById('carousel_modal');
-	const carouselContainer = document.querySelector(
-		'.carousel-container',
-	);
+	const carouselContainer = document.querySelector('.carousel-container');
 	const closeBtn = document.querySelector('.carousel-close');
 	const prevBtn = document.querySelector('.carousel-prev');
 	const nextBtn = document.querySelector('.carousel-next');
@@ -38,8 +36,7 @@ export function initLightbox() {
 
 	function showPrevMedia() {
 		currentIndex =
-			(currentIndex - 1 + mediaItems.length) %
-			mediaItems.length;
+			(currentIndex - 1 + mediaItems.length) % mediaItems.length;
 		openCarousel(currentIndex);
 	}
 
