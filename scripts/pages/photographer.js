@@ -1,5 +1,4 @@
 import { MediaFactory } from '../factory/medias.js';
-import { initLightbox } from '../utils/lightbox.js';
 import { sortMedia } from '../utils/filter.js';
 
 function getPhotographerId() {
@@ -83,7 +82,7 @@ async function displayPhotographerData(photographer) {
     const photographProduction = document.querySelector('.photograph-production');
     main.appendChild(photographProduction);
 
-    const lightbox = initLightbox();
+    const lightbox = window.lightboxInstance;
 
     photographer.media.forEach(media => {
         const mediaModel = mediaFactory(media);

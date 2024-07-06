@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 listItem.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter') {
                         selectOption();
+                    } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                        navigateOptions(e, listItem);
                     }
                 });
 
@@ -41,6 +43,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectList.appendChild(listItem);
             }
         });
+
+        // Ensure all items are tab accessible
+        const items = selectList.querySelectorAll('li[role="option"]');
+        items.forEach(item => item.setAttribute('tabindex', '0'));
+    };
+
+    const navigateOptions = (e, currentItem) => {
+        e.preventDefault();
+        let nextItem;
+        const items = [openFilterButton, ...Array.from(selectList.querySelectorAll('li[role="option"]'))];
+        const currentIndex = items.indexOf(currentItem);
+
+        if (e.key === 'ArrowDown') {
+            nextItem = items[(currentIndex + 1) % items.length];
+        } else if (e.key === 'ArrowUp') {
+            nextItem = items[(currentIndex - 1 + items.length) % items.length];
+        }
+
+        if (nextItem) {
+            items.forEach(item => item.classList.remove('active'));
+            nextItem.classList.add('active');
+            nextItem.focus();
+        }
     };
 
     openFilterButton.addEventListener('click', () => {
@@ -50,10 +75,22 @@ document.addEventListener('DOMContentLoaded', () => {
             buttonIcon.classList.remove('fa-chevron-down');
             buttonIcon.classList.add('fa-chevron-up');
             openFilterButton.style.borderRadius = '5px 5px 0 0';
+            // Focus on the first item in the list when expanded
+            const firstItem = selectList.querySelector('li[role="option"]');
+            if (firstItem) {
+                firstItem.classList.add('active');
+                firstItem.focus();
+            }
         } else {
             buttonIcon.classList.remove('fa-chevron-up');
             buttonIcon.classList.add('fa-chevron-down');
             openFilterButton.style.borderRadius = '5px';
+        }
+    });
+
+    openFilterButton.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            navigateOptions(e, openFilterButton);
         }
     });
 
@@ -67,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 export function sortMedia(option) {
     const mediaContainer = document.querySelector('.photograph-production');
     let mediaElements = Array.from(mediaContainer.children);
-    
+
     switch(option) {
         case 'Popularité':
             mediaElements.sort((a, b) => {
@@ -92,6 +129,13 @@ export function sortMedia(option) {
             break;
     }
 
+    // Clear and re-append sorted media elements to the media container
     mediaContainer.innerHTML = '';
     mediaElements.forEach(el => mediaContainer.appendChild(el));
+
+    // Update lightbox items order
+    const lightbox = window.lightboxInstance;
+    if (lightbox) {
+        lightbox.updateOrder(mediaElements);
+    }
 }

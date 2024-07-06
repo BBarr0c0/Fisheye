@@ -2,17 +2,17 @@ import { photographerTemplate } from '../templates/photographer.js';
     
 async function getPhotographers() {
     try {
-        // Récupère les données du fichier JSON
+        // Get data from JSON file
         const response = await fetch('../../data/photographers.json');
         if (!response.ok) {
             throw new Error('Erreur lors de la récupération du fichier JSON');
         }
         const data = await response.json();
         
-        // Affiche les données des photographes dans la console
+        // Displays photographer data in the console
         console.log(data.photographers);
         
-        // Retourne les données
+        // Return data
         return data;
     } catch (error) {
         console.error('Erreur lors de la récupération des données:', error);
@@ -30,7 +30,7 @@ async function displayData(photographers) {
 }
 
 async function init() {
-    // Récupère les datas des photographes
+    // Retrieve photographers’ data
     const { photographers } = await getPhotographers();
     displayData(photographers);
 }
