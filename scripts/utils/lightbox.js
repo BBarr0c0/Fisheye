@@ -25,16 +25,25 @@ export function initLightbox() {
 		const mediaElement = mediaItem.cloneNode(true);
 		const titleElement = document.createElement('h3');
 		titleElement.textContent = mediaTitle;
+		titleElement.setAttribute('tabindex', '0');
+        titleElement.setAttribute('aria-label', `Titre du média : ${mediaTitle}`);
+
+		mediaElement.setAttribute('tabindex', '0');
+        mediaElement.setAttribute('aria-describedby', `media-title-${index}`);
 
 		carouselContainer.appendChild(mediaElement);
 		carouselContainer.appendChild(titleElement);
 		carouselModal.classList.remove('hidden');
+		carouselModal.setAttribute('aria-hidden', 'false');
+        carouselModal.setAttribute('tabindex', '0');
 
 		closeBtn.focus(); // Set focus on the close button when lightbox is opened
 	}
 
 	function closeCarousel() {
 		carouselModal.classList.add('hidden');
+		carouselModal.setAttribute('aria-hidden', 'true');
+        carouselModal.setAttribute('tabindex', '-1');
 
 		if (triggerElement) {
 			triggerElement.focus(); // Return focus to the element that triggered the lightbox
@@ -66,6 +75,10 @@ export function initLightbox() {
 			mediaItems.push(mediaItem);
 			mediaTitles.push(mediaTitle);
 			mediaItem.setAttribute('data-index', index);
+			mediaItem.setAttribute('role', 'button');
+            mediaItem.setAttribute('tabindex', '0');
+            mediaItem.setAttribute('aria-label', `Ouvrir le carrousel pour ${mediaTitle}`);
+			
 			mediaItem.addEventListener('click', (e) => openCarousel(parseInt(e.currentTarget.getAttribute('data-index'))));
             mediaItem.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {

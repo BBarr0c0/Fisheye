@@ -5,15 +5,21 @@ export function photographerTemplate(data) {
 
     function getUserCardDOM() {
         const article = document.createElement('article');
+        article.setAttribute('role', 'article');
+        article.setAttribute('tabindex', '0');
 
         const link = document.createElement('a');
         link.classList.add('link');
         link.setAttribute('href', `photographer.html?id=${id}`);
         link.setAttribute('target', '_self');
         link.setAttribute('aria-label', `Voir le profil du photographe ${name}`);
+        link.setAttribute('role', 'link');
+        link.setAttribute('tabindex', '0');
 
         const imgContainer = document.createElement('div');
         imgContainer.classList.add('imgContainer');
+        imgContainer.setAttribute('role', 'img');
+        imgContainer.setAttribute('aria-labelledby', `img-${id}`);
 
         const img = document.createElement('img');
         img.setAttribute("src", picture);

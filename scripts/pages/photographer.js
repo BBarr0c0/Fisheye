@@ -34,21 +34,25 @@ async function displayPhotographerData(photographer) {
     const name = document.createElement('h2');
     name.textContent = photographer.name;
     name.setAttribute('aria-label', `Nom du photographe ${photographer.name}`);
+    name.setAttribute('tabindex', '0');
 
     const location = document.createElement('p');
     location.textContent = `${photographer.city}, ${photographer.country}`;
     location.setAttribute('aria-label', `Ville et pays du photographe ${photographer.name}`);
     location.classList.add('location');
+    location.setAttribute('tabindex', '0');
 
     const tagline = document.createElement('p');
     tagline.textContent = photographer.tagline;
     tagline.setAttribute('aria-label', `Slogan du photographe ${photographer.name}`);
+    tagline.setAttribute('tabindex', '0');
 
     const picture = `assets/photographers/${photographer.portrait}`;
     const selfie = document.createElement('img');
     selfie.setAttribute("src", picture);
     selfie.setAttribute("alt", `Photo de profil de ${photographer.name}`);
     selfie.classList.add('selfie');
+    selfie.setAttribute('tabindex', '0');
     
     photographHeader.prepend(textContainer);
     textContainer.appendChild(name);
@@ -61,6 +65,7 @@ async function displayPhotographerData(photographer) {
     const titleNameForm = document.createElement('p');
     titleNameForm.textContent = `${photographer.name}`;
     titleNameForm.classList.add('titleNameForm');
+    titleNameForm.setAttribute('tabindex', '0');
 
     titleForm.appendChild(titleNameForm);
     
@@ -68,6 +73,8 @@ async function displayPhotographerData(photographer) {
 
     const totalLikes = document.createElement('p');
     totalLikes.classList.add('total-likes');
+    totalLikes.setAttribute('tabindex', '0');
+    totalLikes.setAttribute('aria-label', 'Nombre total de likes');
 
     likesPrice.appendChild(totalLikes);
 
@@ -75,6 +82,7 @@ async function displayPhotographerData(photographer) {
     dailyPrice.classList.add('price');
     dailyPrice.textContent = `${photographer.price}€/jour`;
     dailyPrice.setAttribute('aria-label', `Tarif journalier du photographe ${photographer.name}`);
+    dailyPrice.setAttribute('tabindex', '0');
 
     likesPrice.appendChild(dailyPrice);
 
@@ -133,6 +141,10 @@ function mediaFactory(media) {
         getMediaDOM: () => {
             const { article, mediaElement } = factoryInstance.create();
             article.setAttribute('data-date', media.date);
+            article.setAttribute('tabindex', '0');
+            article.setAttribute('role', 'article');
+            mediaElement.setAttribute('tabindex', '0');
+            mediaElement.setAttribute('aria-describedby', `media-title-${media.id}`);
             return { article, mediaElement };
         }
     };
