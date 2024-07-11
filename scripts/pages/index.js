@@ -1,5 +1,7 @@
+// Importing the photographer template creation function
 import { photographerTemplate } from '../templates/photographer.js';
     
+// Function to retrieve photographers data from JSON file
 async function getPhotographers() {
     try {
         // Get data from JSON file
@@ -19,9 +21,12 @@ async function getPhotographers() {
     }
 }
 
+// Function to display photographers' data on the page
 async function displayData(photographers) {
+    // Selection of the section where the photographers will be displayed
     const photographersSection = document.querySelector(".photographer_section");
 
+    // Creation and addition of each photographer's card to the section
     photographers.forEach((photographer) => {
         const photographerModel = photographerTemplate(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
@@ -29,11 +34,14 @@ async function displayData(photographers) {
     });
 }
 
+// Initialization function
 async function init() {
     // Retrieve photographers’ data
     const { photographers } = await getPhotographers();
+    // Display data on the page
     displayData(photographers);
 }
 
+// Call the initialization function
 init();
     

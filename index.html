@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" >
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye</title>
@@ -12,18 +12,25 @@
 
   <body>
 
-    <header role="banner" aria-label="En-tête de la page">
+    <!-- Page header -->
+
+    <header aria-label="En-tête de la page">
         <a href="./index.html" title="Accueil">
-            <img src="assets/images/logo.png" class="logo" alt="Page d'accueil Fisheye"/>
+            <img src="assets/images/logo.png" class="logo" alt="Page d'accueil Fisheye">
         </a>
         <h1 tabindex="0">Nos photographes</h1>
     </header>
+
+    <!-- Main section of the page -->
 
     <main id="main">
         <div class="photographer_section" role="navigation" aria-label="Section des photographes"></div>
     </main>
 
+    <!-- Inclusion of JavaScript scripts -->
+
     <script type="module" src="scripts/templates/photographer.js"></script>
     <script type="module" src="scripts/pages/index.js"></script>
+    
   </body>
 </html>

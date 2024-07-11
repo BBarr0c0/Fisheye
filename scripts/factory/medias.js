@@ -1,11 +1,16 @@
 import { updateTotalLikes } from '../pages/photographer.js'
 
+// Factory class to create Media objects (ImageMedia or VideoMedia)
 export class MediaFactory {
     constructor(media) {
+        // Extracting properties from the media object
         const { photographerId, title, image, video, likes, date } = media;
+
+        // Determining the media source and media type (image or video)
         const mediaSrc = image ? `assets/images/${photographerId}/${image}` : `assets/images/${photographerId}/${video}`;
         const mediaType = image ? 'image' : 'video';
         
+        // Depending on the media type, return an instance of ImageMedia or VideoMedia
         switch (mediaType) {
             case 'image':
                 return new ImageMedia(mediaSrc, title, likes, date);
@@ -15,6 +20,7 @@ export class MediaFactory {
     }
 }
 
+// Class to manage images
 class ImageMedia {
     constructor(path, title, likes, date) {
         this.path = path;
@@ -24,22 +30,25 @@ class ImageMedia {
         this.date = date;
     }
 
+    // Method to toggle the like state
     toggleLike() {
         this.liked = !this.liked;
         this.likes += this.liked ? 1 : -1;
         this.updateLikesDisplay();
     }
 
+    // Method to update the display of likes
     updateLikesDisplay() {
         const iconClass = this.liked ? 'fa-solid' : 'fa-regular';
-        this.mediaLikes.innerHTML = `${this.likes} <i class="${iconClass} fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        this.mediaLikes.innerHTML = `${this.likes} <i class="${iconClass} fa-heart"></i>`;
         updateTotalLikes();
     }
 
+    // Method to create the HTML element of the image
     create() {
         const article = document.createElement('article');
         
-
+        // Creation and configuration of the img element
         const imgElement = document.createElement('img');
         imgElement.setAttribute('src', this.path);
         imgElement.setAttribute('alt', this.title);
@@ -53,9 +62,14 @@ class ImageMedia {
         const mediaTitle = document.createElement('h3');
         mediaTitle.textContent = this.title;
 
+        // Creation and configuration of the element for likes
         this.mediaLikes = document.createElement('p');
         this.mediaLikes.classList.add('media-likes');
-        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-regular fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-regular fa-heart"></i>`;
+        this.mediaLikes.setAttribute('aria-label', `${this.likes} like`);
+        this.mediaLikes.setAttribute('tabindex', '0');
+        this.mediaLikes.setAttribute('role', 'button');
+
         this.mediaLikes.addEventListener('click', () => this.toggleLike());
         this.mediaLikes.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
@@ -72,6 +86,7 @@ class ImageMedia {
     }
 }
 
+// Class to manage video
 class VideoMedia {
     constructor(path, title, likes, date) {
         this.path = path;
@@ -81,22 +96,25 @@ class VideoMedia {
         this.date = date;
     }
 
+    // Method to toggle the like state
     toggleLike() {
         this.liked = !this.liked;
         this.likes += this.liked ? 1 : -1;
         this.updateLikesDisplay();
     }
 
+    // Method to update the display of likes
     updateLikesDisplay() {
         const iconClass = this.liked ? 'fa-solid' : 'fa-regular';
-        this.mediaLikes.innerHTML = `${this.likes} <i class="${iconClass} fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        this.mediaLikes.innerHTML = `${this.likes} <i class="${iconClass} fa-heart"></i>`;
         updateTotalLikes();
     }
 
+    // Method to create the HTML element of the video
     create() {
         const article = document.createElement('article');
         
-
+        // Creation and configuration of the video element
         const videoElement = document.createElement('video');
         videoElement.setAttribute('controls', '');
         videoElement.setAttribute('class', 'video-media');
@@ -114,9 +132,14 @@ class VideoMedia {
         const mediaTitle = document.createElement('h3');
         mediaTitle.textContent = this.title;
 
+        // Creation and configuration of the element for likes
         this.mediaLikes = document.createElement('p');
         this.mediaLikes.classList.add('media-likes');
-        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-regular fa-heart" tabindex="0" role="button" aria-label="like"></i>`;
+        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-regular fa-heart"></i>`;
+        this.mediaLikes.setAttribute('aria-label', `${this.likes} like`);
+        this.mediaLikes.setAttribute('tabindex', '0');
+        this.mediaLikes.setAttribute('role', 'button');
+
         this.mediaLikes.addEventListener('click', () => this.toggleLike());
         this.mediaLikes.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {

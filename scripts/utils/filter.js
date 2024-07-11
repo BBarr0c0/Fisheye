@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Set available sorting options
     const options = ['Popularité', 'Date', 'Titre'];
+
+    // Get the references of the DOM elements used in the script
     const openFilterButton = document.getElementById('open-filter');
     const selectContainer = document.querySelector('.select-container');
     const selectList = document.getElementById('select');
@@ -8,7 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to update the list of options
     const updateOptions = (selectedOption) => {
+
+        // Empty the list of current options
         selectList.innerHTML = '';
+
+        // Add new options to the list, except the currently selected one
         options.forEach(option => {
             if (option !== selectedOption) {
                 const listItem = document.createElement('li');
@@ -18,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const hr = document.createElement('hr');
 
+                // Function to select an option and update the display
                 const selectOption = () => {
                     buttonText.textContent = option;
                     selectContainer.classList.remove('active');
@@ -29,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     sortMedia(option);
                 };
 
+                // Add event listeners for option selection
                 listItem.addEventListener('click', selectOption);
 
                 listItem.addEventListener('keydown', (e) => {
@@ -49,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         items.forEach(item => item.setAttribute('tabindex', '0'));
     };
 
+    // Function to navigate options with keyboard arrows
     const navigateOptions = (e, currentItem) => {
         e.preventDefault();
         let nextItem;
@@ -68,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Event to open/close the selection list
     openFilterButton.addEventListener('click', () => {
         const expanded = selectContainer.classList.toggle('active');
         openFilterButton.setAttribute('aria-expanded', expanded);
@@ -88,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Event to navigate options with keyboard arrows from the filter button
     openFilterButton.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
             navigateOptions(e, openFilterButton);
@@ -101,10 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
     sortMedia(defaultOption);
 });
 
+// Function to sort media items based on selected option
 export function sortMedia(option) {
     const mediaContainer = document.querySelector('.photograph-production');
     let mediaElements = Array.from(mediaContainer.children);
 
+    // Apply sorting according to the selected option
     switch(option) {
         case 'Popularité':
             mediaElements.sort((a, b) => {

@@ -1,11 +1,13 @@
 import { MediaFactory } from '../factory/medias.js';
 import { sortMedia } from '../utils/filter.js';
 
+// Function to get photographer ID from URL parameters
 function getPhotographerId() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('id');
 }
 
+// Function to retrieve photographer data by ID from a JSON file
 async function getPhotographerById(id) {
     try {
         const response = await fetch('../../data/photographers.json');
@@ -15,6 +17,7 @@ async function getPhotographerById(id) {
         const data = await response.json();
         const photographer = data.photographers.find(photographer => photographer.id == id);
 
+        // Filter photographer's media
         photographer.media = data.media.filter(media => media.photographerId == id);
 
         console.log(photographer);
@@ -24,6 +27,7 @@ async function getPhotographerById(id) {
     }
 }
 
+// Function to display photographer data on the page
 async function displayPhotographerData(photographer) {
     const photographHeader = document.querySelector(".photograph-header");
     const main = document.querySelector("main");
@@ -74,7 +78,7 @@ async function displayPhotographerData(photographer) {
     const totalLikes = document.createElement('p');
     totalLikes.classList.add('total-likes');
     totalLikes.setAttribute('tabindex', '0');
-    totalLikes.setAttribute('aria-label', 'Nombre total de likes');
+    totalLikes.setAttribute('aria-label', `Nombre total de likes`);
 
     likesPrice.appendChild(totalLikes);
 
@@ -92,6 +96,7 @@ async function displayPhotographerData(photographer) {
 
     const lightbox = window.lightboxInstance;
 
+    // Create and add each media to the DOM
     photographer.media.forEach(media => {
         const mediaModel = mediaFactory(media);
         const { article, mediaElement } = mediaModel.getMediaDOM();
@@ -106,6 +111,7 @@ async function displayPhotographerData(photographer) {
     sortMedia(defaultOption);
 }
 
+// Initialization function to retrieve and display photographer data
 async function init() {
     const photographerId = getPhotographerId();
     const photographer = await getPhotographerById(photographerId);
@@ -118,6 +124,7 @@ async function init() {
 
 init();
 
+// Function to update the total number of likes
 export function updateTotalLikes() {
     const totalLikesElement = document.querySelector('.total-likes');
     const allLikes = document.querySelectorAll('.media-likes');
@@ -131,7 +138,7 @@ export function updateTotalLikes() {
     totalLikesElement.innerHTML = `${totalLikes} <i class="fa-solid fa-heart"></i>`;
 }
 
-// Using the MediaFactory
+// Use the MediaFactory to create media elements
 function mediaFactory(media) {
     const factoryInstance = new MediaFactory(media);
     return {

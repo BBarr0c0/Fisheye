@@ -1,8 +1,10 @@
+// Photographer template creation function
 export function photographerTemplate(data) {
     const { name, id, city, country, tagline, price, portrait } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
+    // Function to create and return a photographer's DOM map
     function getUserCardDOM() {
         const article = document.createElement('article');
         article.setAttribute('role', 'article');
