@@ -8,15 +8,14 @@ export function photographerTemplate(data) {
     function getUserCardDOM() {
         const article = document.createElement('article');
         article.setAttribute('role', 'article');
-        article.setAttribute('tabindex', '0'); // Article is focusable
+        article.setAttribute('tabindex', '0');
 
         const link = document.createElement('a');
         link.classList.add('link');
         link.setAttribute('href', `photographer.html?id=${id}`);
         link.setAttribute('target', '_self');
         link.setAttribute('aria-label', `Voir le profil du photographe ${name}`);
-        link.setAttribute('role', 'link');
-        link.setAttribute('tabindex', '-1'); // Link is not focusable
+        link.setAttribute('tabindex', '-1');
 
         const imgContainer = document.createElement('div');
         imgContainer.classList.add('imgContainer');

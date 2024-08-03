@@ -108,7 +108,6 @@ function initLightbox() {
 			mediaItems.push(mediaItem);
 			mediaTitles.push(mediaTitle);
 			mediaItem.setAttribute('data-index', index);
-			mediaItem.setAttribute('role', 'button');
             mediaItem.setAttribute('tabindex', '0');
             mediaItem.setAttribute('aria-label', `${mediaTitle}`);
 			

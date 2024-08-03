@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                selectList.appendChild(hr);
+                listItem.prepend(hr);
                 selectList.appendChild(listItem);
             }
         });

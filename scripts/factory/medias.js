@@ -40,7 +40,7 @@ class ImageMedia {
     // Method to update the display of likes
     updateLikesDisplay() {
         const iconClass = this.liked ? 'fa-solid' : 'fa-regular';
-        this.mediaLikes.innerHTML = `${this.likes} <i class="${iconClass} fa-heart"></i>`;
+        this.mediaLikes.innerHTML = `${this.likes} <span class="${iconClass} fa-heart"></span>`;
         updateTotalLikes();
     }
 
@@ -63,7 +63,7 @@ class ImageMedia {
         // Creation and configuration of the element for likes
         this.mediaLikes = document.createElement('p');
         this.mediaLikes.classList.add('media-likes');
-        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-regular fa-heart"></i>`;
+        this.mediaLikes.innerHTML = `${this.likes} <span class="fa-regular fa-heart"></span>`;
         this.mediaLikes.setAttribute('aria-label', `${this.likes} like`);
         this.mediaLikes.setAttribute('tabindex', '0');
         this.mediaLikes.setAttribute('role', 'button');
@@ -104,7 +104,7 @@ class VideoMedia {
     // Method to update the display of likes
     updateLikesDisplay() {
         const iconClass = this.liked ? 'fa-solid' : 'fa-regular';
-        this.mediaLikes.innerHTML = `${this.likes} <i class="${iconClass} fa-heart"></i>`;
+        this.mediaLikes.innerHTML = `${this.likes} <span class="${iconClass} fa-heart"></span>`;
         updateTotalLikes();
     }
 
@@ -132,7 +132,7 @@ class VideoMedia {
         // Creation and configuration of the element for likes
         this.mediaLikes = document.createElement('p');
         this.mediaLikes.classList.add('media-likes');
-        this.mediaLikes.innerHTML = `${this.likes} <i class="fa-regular fa-heart"></i>`;
+        this.mediaLikes.innerHTML = `${this.likes} <span class="fa-regular fa-heart"></span>`;
         this.mediaLikes.setAttribute('aria-label', `${this.likes} like`);
         this.mediaLikes.setAttribute('tabindex', '0');
         this.mediaLikes.setAttribute('role', 'button');

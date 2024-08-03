@@ -36,18 +36,15 @@ async function displayPhotographerData(photographer) {
 
     const name = document.createElement('h2');
     name.textContent = photographer.name;
-    name.setAttribute('aria-label', `Nom du photographe ${photographer.name}`);
     name.setAttribute('tabindex', '0');
 
     const location = document.createElement('p');
     location.textContent = `${photographer.city}, ${photographer.country}`;
     location.classList.add('location');
-    location.setAttribute('aria-label', `Ville et pays du photographe ${photographer.name}`);
     location.setAttribute('tabindex', '0');
 
     const tagline = document.createElement('p');
     tagline.textContent = photographer.tagline;
-    tagline.setAttribute('aria-label', `Slogan du photographe ${photographer.name}`);
     tagline.setAttribute('tabindex', '0');
 
     const picture = `assets/photographers/${photographer.portrait}`;
@@ -64,7 +61,7 @@ async function displayPhotographerData(photographer) {
 
     const titleForm = document.getElementById('modal_title');
 
-    const titleNameForm = document.createElement('p');
+    const titleNameForm = document.createElement('span');
     titleNameForm.textContent = `${photographer.name}`;
     titleNameForm.classList.add('titleNameForm');
 
@@ -75,15 +72,12 @@ async function displayPhotographerData(photographer) {
     const totalLikes = document.createElement('p');
     totalLikes.classList.add('total-likes');
     totalLikes.setAttribute('tabindex', '0');
-    totalLikes.setAttribute('aria-live', 'polite');
-    totalLikes.setAttribute('aria-label', `Nombre total de likes`);
 
     likesPrice.appendChild(totalLikes);
 
     const dailyPrice = document.createElement('p');
     dailyPrice.classList.add('price');
     dailyPrice.textContent = `${photographer.price}€/jour`;
-    dailyPrice.setAttribute('aria-label', `Tarif journalier du photographe ${photographer.name}`);
     dailyPrice.setAttribute('tabindex', '0');
 
     likesPrice.appendChild(dailyPrice);
@@ -133,7 +127,7 @@ export function updateTotalLikes() {
         totalLikes += likesCount;
     });
 
-    totalLikesElement.innerHTML = `${totalLikes} <i class="fa-solid fa-heart"></i>`;
+    totalLikesElement.innerHTML = `${totalLikes} <span class="fa-solid fa-heart"></span>`;
 }
 
 // Use the MediaFactory to create media elements
@@ -146,9 +140,7 @@ function mediaFactory(media) {
         getMediaDOM: () => {
             const { article, mediaElement } = factoryInstance.create();
             article.setAttribute('data-date', media.date);
-            article.setAttribute('role', 'article');
             mediaElement.setAttribute('tabindex', '0');
-            mediaElement.setAttribute('aria-describedby', `media-title-${media.id}`);
             return { article, mediaElement };
         }
     };
