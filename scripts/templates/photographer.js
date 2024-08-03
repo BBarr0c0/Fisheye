@@ -8,7 +8,7 @@ export function photographerTemplate(data) {
     function getUserCardDOM() {
         const article = document.createElement('article');
         article.setAttribute('role', 'article');
-        article.setAttribute('tabindex', '0');
+        article.setAttribute('tabindex', '0'); // Article is focusable
 
         const link = document.createElement('a');
         link.classList.add('link');
@@ -16,12 +16,10 @@ export function photographerTemplate(data) {
         link.setAttribute('target', '_self');
         link.setAttribute('aria-label', `Voir le profil du photographe ${name}`);
         link.setAttribute('role', 'link');
-        link.setAttribute('tabindex', '0');
+        link.setAttribute('tabindex', '-1'); // Link is not focusable
 
         const imgContainer = document.createElement('div');
         imgContainer.classList.add('imgContainer');
-        imgContainer.setAttribute('role', 'img');
-        imgContainer.setAttribute('aria-labelledby', `img-${id}`);
 
         const img = document.createElement('img');
         img.setAttribute("src", picture);
@@ -30,22 +28,18 @@ export function photographerTemplate(data) {
         const h2 = document.createElement('h2');
         h2.classList.add('name');
         h2.textContent = name;
-        h2.setAttribute('aria-label', `Nom du photographe ${name}`);
 
         const countryCity = document.createElement('p');
         countryCity.classList.add('location');
         countryCity.textContent = `${city}, ${country}`;
-        countryCity.setAttribute('aria-label', `Ville et pays du photographe ${name}`);
 
         const photographerTagline = document.createElement('p');
         photographerTagline.classList.add('description');
         photographerTagline.textContent = tagline;
-        photographerTagline.setAttribute('aria-label', `Slogan du photographe ${name}`);
 
         const dailyPrice = document.createElement('p');
         dailyPrice.classList.add('price');
         dailyPrice.textContent = `${price}€/jour`;
-        dailyPrice.setAttribute('aria-label', `Tarif journalier du photographe ${name}`);
 
         article.appendChild(link);
         link.appendChild(imgContainer);
@@ -55,7 +49,14 @@ export function photographerTemplate(data) {
         article.appendChild(photographerTagline);
         article.appendChild(dailyPrice);
 
+        // Add event listener to handle Enter key press
+        article.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                link.click();
+            }
+        });
+
         return article;
     }
-    return { name, picture, getUserCardDOM };
+    return { getUserCardDOM };
 }

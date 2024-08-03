@@ -20,7 +20,6 @@ async function getPhotographerById(id) {
         // Filter photographer's media
         photographer.media = data.media.filter(media => media.photographerId == id);
 
-        console.log(photographer);
         return photographer;
     } catch (error) {
         console.error('Erreur lors de la récupération des données:', error);
@@ -42,8 +41,8 @@ async function displayPhotographerData(photographer) {
 
     const location = document.createElement('p');
     location.textContent = `${photographer.city}, ${photographer.country}`;
-    location.setAttribute('aria-label', `Ville et pays du photographe ${photographer.name}`);
     location.classList.add('location');
+    location.setAttribute('aria-label', `Ville et pays du photographe ${photographer.name}`);
     location.setAttribute('tabindex', '0');
 
     const tagline = document.createElement('p');
@@ -56,7 +55,6 @@ async function displayPhotographerData(photographer) {
     selfie.setAttribute("src", picture);
     selfie.setAttribute("alt", `Photo de profil de ${photographer.name}`);
     selfie.classList.add('selfie');
-    selfie.setAttribute('tabindex', '0');
     
     photographHeader.prepend(textContainer);
     textContainer.appendChild(name);
@@ -69,7 +67,6 @@ async function displayPhotographerData(photographer) {
     const titleNameForm = document.createElement('p');
     titleNameForm.textContent = `${photographer.name}`;
     titleNameForm.classList.add('titleNameForm');
-    titleNameForm.setAttribute('tabindex', '0');
 
     titleForm.appendChild(titleNameForm);
     
@@ -78,6 +75,7 @@ async function displayPhotographerData(photographer) {
     const totalLikes = document.createElement('p');
     totalLikes.classList.add('total-likes');
     totalLikes.setAttribute('tabindex', '0');
+    totalLikes.setAttribute('aria-live', 'polite');
     totalLikes.setAttribute('aria-label', `Nombre total de likes`);
 
     likesPrice.appendChild(totalLikes);
@@ -148,7 +146,6 @@ function mediaFactory(media) {
         getMediaDOM: () => {
             const { article, mediaElement } = factoryInstance.create();
             article.setAttribute('data-date', media.date);
-            article.setAttribute('tabindex', '0');
             article.setAttribute('role', 'article');
             mediaElement.setAttribute('tabindex', '0');
             mediaElement.setAttribute('aria-describedby', `media-title-${media.id}`);

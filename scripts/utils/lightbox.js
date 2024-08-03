@@ -1,5 +1,5 @@
 // Main function to initialize the lightbox
-export function initLightbox() {
+function initLightbox() {
 	// Selection of the DOM elements necessary for the lightbox to function
 	const carouselModal = document.getElementById('carousel_modal');
 	const carouselContainer = document.querySelector('.carousel-container');
@@ -18,8 +18,10 @@ export function initLightbox() {
 	// Function to open the carousel at a specific index
 	function openCarousel(index) {
 
-		// Store the active element that triggered the lightbox to open
-		triggerElement = document.activeElement;
+		if (!triggerElement) {
+			// Store the active element that triggered the lightbox to open
+			triggerElement = document.activeElement;
+		}
 
 		currentIndex = index;
 		const mediaItem = mediaItems[index];
@@ -28,10 +30,10 @@ export function initLightbox() {
 
 		// Clone the selected media element and create a title element
 		const mediaElement = mediaItem.cloneNode(true);
+		mediaElement.removeAttribute('role');
 		const titleElement = document.createElement('h3');
 		titleElement.textContent = mediaTitle;
 		titleElement.setAttribute('id', `media-title-${index}`);
-		titleElement.setAttribute('tabindex', '0');
         titleElement.setAttribute('aria-label', `Titre du média : ${mediaTitle}`);
 
 		mediaElement.setAttribute('tabindex', '0');
@@ -58,6 +60,7 @@ export function initLightbox() {
 		// Return focus to the element that triggered the lightbox
 		if (triggerElement) {
 			triggerElement.focus();
+			triggerElement = null;
 		}
 	}
 

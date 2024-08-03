@@ -52,9 +52,7 @@ class ImageMedia {
         const imgElement = document.createElement('img');
         imgElement.setAttribute('src', this.path);
         imgElement.setAttribute('alt', this.title);
-        imgElement.setAttribute('class', 'image-media');
-        imgElement.setAttribute('tabindex', '0');
-        imgElement.setAttribute('role', 'img');
+        imgElement.classList.add('image-media');
 
         const mediaTextContainer = document.createElement('div');
         mediaTextContainer.classList.add('mediaTextContainer');
@@ -117,8 +115,7 @@ class VideoMedia {
         // Creation and configuration of the video element
         const videoElement = document.createElement('video');
         videoElement.setAttribute('controls', '');
-        videoElement.setAttribute('class', 'video-media');
-        videoElement.setAttribute('tabindex', '0');
+        videoElement.classList.add('video-media');
 
         const sourceElement = document.createElement('source');
         sourceElement.setAttribute('src', this.path);
